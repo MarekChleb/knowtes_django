@@ -6,13 +6,18 @@ from main.models import Knowte
 
 
 def knowte(request):
-  ret = {}
+  ret = []
   id = 1
   print('test knowte', request)
   if id is None:
-    ret = Knowte.objects.all()
+    objects = Knowte.objects.all()
+    for obj in object:
+      ret.append({
+        'text': obj.text
+      })
   else:
-    ret = Knowte.objects.get(id=id)
-  return JsonResponse({
-    'text': ret.text
-  })
+    obj = Knowte.objects.get(id=id)
+    ret = [{
+      'text': obj.text
+    }]
+  return JsonResponse({ 'objects': ret })
